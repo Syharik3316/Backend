@@ -11,5 +11,5 @@
 pip install -r ./requirements.txt
 Писать это python ./manage.py makemigrations
 И это python ./manage.py migrate
-А это запуск сервера python ./manage.py runserver 127.0.0.1:5432 (./manage.py) - путь до файла, (127.0.0.1:5432) - айпи это локалхост порт стандартный от джанги (вроде)
+А это запуск сервера python ./manage.py runserver 127.0.0.1:5432 (./manage.py) - путь до файла.
 ------------------------------------------------------------------------------------------------
