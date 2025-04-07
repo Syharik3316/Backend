@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Профиль {{ profile_user.username }}{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <h1>Профиль пользователя {{ profile_user.username }}</h1>
+    
+    <div class="profile-info">
+        {% if profile_user.profile_picture %}
+            <img src="{{ profile_user.profile_picture.url }}" alt="Фото профиля" class="profile-picture">
+        {% else %}
+            <div class="no-picture">Нет фото</div>
+        {% endif %}
+        
+        <div class="details">
+            <p><strong>Имя пользователя:</strong> {{ profile_user.username }}</p>
+            <p><strong>Email:</strong> {{ profile_user.email }}</p>
+            
+            {% if profile_user.bio %}
+                <p><strong>О себе:</strong> {{ profile_user.bio }}</p>
+            {% endif %}
+            
+            {% if profile_user.website %}
+                <p><strong>Вебсайт:</strong> <a href="{{ profile_user.website }}" target="_blank">{{ profile_user.website }}</a></p>
+            {% endif %}
+        </div>
+    </div>
+    
+    {% if request.user == profile_user %}
+        <div class="profile-actions">
+            <a href="{% url 'edit_profile' %}" class="btn btn-primary">Редактировать профиль</a>
+        </div>
+    {% endif %}
+</div>
+
+<style>
+    .profile-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .profile-info {
+        display: flex;
+        gap: 30px;
+        margin-top: 20px;
+    }
+    .profile-picture {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    .no-picture {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: #eee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .details {
+        flex: 1;
+    }
+    .profile-actions {
+        margin-top: 30px;
+    }
+</style>
+{% endblock %}

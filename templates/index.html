@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<h1>Добро пожаловать на наш сайт!</h1>
+{% if user.is_authenticated %}
+    <p>Вы вошли как <strong>{{ user.username }}</strong> ({{ user.email }})</p>
+{% else %}
+    <p>Пожалуйста, <a href="{% url 'login' %}">войдите</a> или <a href="{% url 'register' %}">зарегистрируйтесь</a>.</p>
+{% endif %}
+{% endblock %}
